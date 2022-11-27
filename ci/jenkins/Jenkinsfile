@@ -1,0 +1,30 @@
+pipeline {
+     agent {
+        docker { image 'artifactory.ap.manulife.com/docker/devops-ci-image:2.5.7' }
+    }
+
+    stages {
+        stage('Step 1') {
+            steps {
+                echo 'This is Step 1.'
+            }
+            steps {
+                echo 'This is Step 2.'
+            }
+            post {
+                failure {
+                    echo "Step 1 has failed!"
+                }
+                success {
+                    echo "Step 1 has failed!"
+                }
+            }
+        }
+        stage('Step 2') {
+            steps {
+                echo 'This is Step 2.'
+            }
+
+        }
+    }
+}
